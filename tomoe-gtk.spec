@@ -7,7 +7,7 @@
 
 %define tomoe_version 0.6.0
 
-Name:           libtomoe-gtk
+Name:           tomoe-gtk
 Summary:        Tomoe-gtk library for handwriting recognition
 Version:        %{version}
 Release:        %{release}
