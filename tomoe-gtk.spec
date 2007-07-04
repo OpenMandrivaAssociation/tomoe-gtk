@@ -8,7 +8,7 @@
 %define tomoe_version 0.6.0
 
 Name:           tomoe-gtk
-Summary:        Tomoe-gtk library for handwriting recognition
+Summary:        Tomoe-gtk for handwriting recognition
 Version:        %{version}
 Release:        %{release}
 Group:		System/Internationalization
@@ -17,13 +17,22 @@ URL:		http://sourceforge.jp/projects/tomoe/
 Source0:	tomoe-gtk-%{version}.tar.bz2
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:		gucharmap
+Requires:		%{libname} = %{version}-%{release}
 BuildRequires:		libtomoe-devel >= %{tomoe_version}
+BuildRequires:          tomoe >= %{tomoe_version}
 BuildRequires:		gtk+2-devel automake pygtk2.0-devel
 BuildRequires:		gucharmap-devel gtk-doc python-gobject-devel
 
 %description
-Tomoe-gtk library for handwriting recognition.
+Tomoe-gtk handwriting recognition.
 
+%package	python
+Summary:	Python binding of Tomoe-gtk
+Group:		System/Internationalization
+Requires:	%{name} = %{version}
+
+%description	python
+Python binding of Tomoe-gtk.
 
 %package -n	%{libname}
 Summary:	Tomoe-gtk library
@@ -38,13 +47,14 @@ Summary:	Development files for %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}
 Provides:	%{name}-devel = %{version}-%{release}
+Provides:	lib%{name}-devel = %{version}-%{release}
 Obsoletes:	%{libname}-devel
 
 %description -n %{develname}
 Headers of %{name} for development.
 
 %prep
-%setup -q -n tomoe-gtk-%{version}
+%setup -q
 
 %build
 # force to regenerate configure
@@ -60,7 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 # remove docs for sigscheme (they should be installed by %doc)
 rm -rf %{buildroot}%{_datadir}/gtk-doc/
 
-%{find_lang} tomoe-gtk
+%{find_lang} %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -69,9 +79,9 @@ rm -rf $RPM_BUILD_ROOT
 %postun -n %{libname} -p /sbin/ldconfig
 
 
-%files -n %{libname} -f tomoe-gtk.lang
+%files -n %{libname} -f %{name}.lang
 %defattr(-,root,root)
-%doc COPYING
+%doc AUTHORS ChangeLog COPYING README TODO
 %doc doc/reference/html/*
 %{_libdir}/lib*.so.*
 %{_datadir}/tomoe-gtk/*.png
@@ -83,4 +93,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib*.so
 %{_libdir}/lib*.a
 %{_libdir}/lib*.la
+%{python_sitearch}/gtk-2.0/*.a
+%{python_sitearch}/gtk-2.0/*.la
 %{_libdir}/pkgconfig/*.pc
+
+%files python
+%defattr(-,root,root)
+%doc COPYING
+%{python_sitearch}/gtk-2.0/*.so
