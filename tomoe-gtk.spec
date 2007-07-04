@@ -16,7 +16,6 @@ License:	LGPL
 URL:		http://sourceforge.jp/projects/tomoe/
 Source0:	tomoe-gtk-%{version}.tar.bz2
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Requires:		libtomoe0 >= %{tomoe_version}
 Requires:		gucharmap
 BuildRequires:		libtomoe-devel >= %{tomoe_version}
 BuildRequires:		gtk+2-devel automake pygtk2.0-devel
