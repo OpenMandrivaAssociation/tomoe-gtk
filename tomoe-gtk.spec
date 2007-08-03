@@ -1,9 +1,10 @@
 %define version 0.6.0
-%define release %mkrel 3
+%define release %mkrel 4
 
 %define major 0
-%define libname %mklibname tomoe-gtk %{major}
-%define develname %mklibname -d tomoe-gtk
+%define libname_orig lib%{name}
+%define libname %mklibname %{name} %{major}
+%define develname %mklibname -d %{name}
 
 %define tomoe_version 0.6.0
 
@@ -37,7 +38,7 @@ Python binding of Tomoe-gtk.
 %package -n	%{libname}
 Summary:	Tomoe-gtk library
 Group:		System/Internationalization
-Provides:	%{name} = %{version}-%{release}
+Provides:	%{libname_orig} = %{version}-%{release}
 
 %description -n %{libname}
 Tomoe-gtk library.
