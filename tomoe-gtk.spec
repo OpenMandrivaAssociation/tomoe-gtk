@@ -1,5 +1,5 @@
 %define version 0.6.0
-%define release %mkrel 4
+%define release %mkrel 5
 
 %define major 0
 %define libname_orig lib%{name}
@@ -30,7 +30,7 @@ Tomoe-gtk handwriting recognition.
 %package	python
 Summary:	Python binding of Tomoe-gtk
 Group:		System/Internationalization
-Requires:	%{name} = %{version}
+Requires:	%{libname} = %{version}-%{release}
 
 %description	python
 Python binding of Tomoe-gtk.
