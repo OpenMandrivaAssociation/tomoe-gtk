@@ -16,7 +16,6 @@ Group:		System/Internationalization
 License:	LGPL
 URL:		http://sourceforge.jp/projects/tomoe/
 Source0:	tomoe-gtk-%{version}.tar.bz2
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:		gucharmap
 Requires:		%{libname} = %{version}-%{release}
 BuildRequires:		libtomoe-devel >= %{tomoe_version}
