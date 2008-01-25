@@ -1,5 +1,5 @@
 %define version 0.6.0
-%define release %mkrel 5
+%define release %mkrel 6
 
 %define major 0
 %define libname_orig lib%{name}
@@ -13,7 +13,7 @@ Summary:        Tomoe-gtk for handwriting recognition
 Version:        %{version}
 Release:        %{release}
 Group:		System/Internationalization
-License:	LGPL
+License:	LGPLv2+
 URL:		http://sourceforge.jp/projects/tomoe/
 Source0:	tomoe-gtk-%{version}.tar.bz2
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -78,7 +78,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %post -n %{libname} -p /sbin/ldconfig
 %postun -n %{libname} -p /sbin/ldconfig
-
 
 %files -n %{libname} -f %{name}.lang
 %defattr(-,root,root)
