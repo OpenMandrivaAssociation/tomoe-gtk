@@ -1,5 +1,5 @@
 %define version 0.6.0
-%define release %mkrel 6
+%define release %mkrel 7
 
 %define major 0
 %define libname_orig lib%{name}
@@ -14,15 +14,14 @@ Version:        %{version}
 Release:        %{release}
 Group:		System/Internationalization
 License:	LGPLv2+
-URL:		http://sourceforge.jp/projects/tomoe/
-Source0:	tomoe-gtk-%{version}.tar.bz2
+URL:		http://tomoe.sourceforge.jp/
+Source0:	http://ovh.dl.sourceforge.net/sourceforge/tomoe/%name-%version.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Requires:		gucharmap
 Requires:		%{libname} = %{version}-%{release}
 BuildRequires:		libtomoe-devel >= %{tomoe_version}
 BuildRequires:          tomoe >= %{tomoe_version}
 BuildRequires:		gtk+2-devel automake pygtk2.0-devel
-BuildRequires:		gucharmap-devel gtk-doc python-gobject-devel
+BuildRequires:		gtk-doc python-gobject-devel
 
 %description
 Tomoe-gtk handwriting recognition.
@@ -61,7 +60,7 @@ Headers of %{name} for development.
 # force to regenerate configure
 ./autogen.sh
 
-%configure2_5x
+%configure2_5x --without-gucharmap
 %make
 
 %install
