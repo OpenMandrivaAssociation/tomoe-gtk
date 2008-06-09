@@ -75,8 +75,12 @@ rm -rf %{buildroot}%{_datadir}/gtk-doc/
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %{libname} -p /sbin/ldconfig
+%endif
 
 %files -n %{libname} -f %{name}.lang
 %defattr(-,root,root)
