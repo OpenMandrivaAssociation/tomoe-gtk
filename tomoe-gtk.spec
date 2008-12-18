@@ -1,27 +1,26 @@
-%define version 0.6.0
-%define release %mkrel 8
-
 %define major 0
-%define libname_orig lib%{name}
-%define libname %mklibname %{name} %{major}
-%define develname %mklibname -d %{name}
+%define libname_orig	lib%{name}
+%define libname		%mklibname %{name} %{major}
+%define develname	%mklibname -d %{name}
 
 %define tomoe_version 0.6.0
 
 Name:           tomoe-gtk
 Summary:        Tomoe-gtk for handwriting recognition
-Version:        %{version}
-Release:        %{release}
+Version:        0.6.0
+Release:        %{mkrel 8}
 Group:		System/Internationalization
 License:	LGPLv2+
 URL:		http://tomoe.sourceforge.jp/
-Source0:	http://ovh.dl.sourceforge.net/sourceforge/tomoe/%name-%version.tar.gz
+Source0:	http://ovh.dl.sourceforge.net/sourceforge/tomoe/%{name}-%{version}.tar.gz
+Patch0:		tomoe-gtk-0.6.0-underlink.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Requires:		%{libname} = %{version}-%{release}
-BuildRequires:		libtomoe-devel >= %{tomoe_version}
-BuildRequires:          tomoe >= %{tomoe_version}
-BuildRequires:		gtk+2-devel automake pygtk2.0-devel
-BuildRequires:		gtk-doc python-gobject-devel
+BuildRequires:	libtomoe-devel >= %{tomoe_version}
+BuildRequires:	tomoe >= %{tomoe_version}
+BuildRequires:	gtk+2-devel
+BuildRequires:	pygtk2.0-devel
+BuildRequires:	gtk-doc
+BuildRequires:	python-gobject-devel
 
 %description
 Tomoe-gtk handwriting recognition.
@@ -37,7 +36,6 @@ Python binding of Tomoe-gtk.
 %package -n	%{libname}
 Summary:	Tomoe-gtk library
 Group:		System/Internationalization
-Provides:	%{libname_orig} = %{version}-%{release}
 
 %description -n %{libname}
 Tomoe-gtk library.
@@ -55,6 +53,7 @@ Headers of %{name} for development.
 
 %prep
 %setup -q
+%patch0 -p1 -b .underlink
 
 %build
 # force to regenerate configure
@@ -64,7 +63,7 @@ Headers of %{name} for development.
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %makeinstall_std
 
 # remove docs for sigscheme (they should be installed by %doc)
@@ -73,7 +72,7 @@ rm -rf %{buildroot}%{_datadir}/gtk-doc/
 %{find_lang} %{name}
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
@@ -84,23 +83,20 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n %{libname} -f %{name}.lang
 %defattr(-,root,root)
-%doc AUTHORS ChangeLog COPYING README TODO
-%doc doc/reference/html/*
 %{_libdir}/lib*.so.*
 %{_datadir}/tomoe-gtk/*.png
 
 %files -n %{develname}
 %defattr(-,root,root)
-%doc AUTHORS COPYING ChangeLog
+%doc AUTHORS ChangeLog README TODO
+%doc doc/reference/html/*
 %{_includedir}/tomoe/gtk/*.h
 %{_libdir}/lib*.so
-%{_libdir}/lib*.a
-%{_libdir}/lib*.la
-%{python_sitearch}/gtk-2.0/*.a
-%{python_sitearch}/gtk-2.0/*.la
+%{_libdir}/lib*.*a
+%{python_sitearch}/gtk-2.0/*.*a
 %{_libdir}/pkgconfig/*.pc
 
 %files python
 %defattr(-,root,root)
-%doc COPYING
 %{python_sitearch}/gtk-2.0/*.so
+
