@@ -8,14 +8,14 @@
 Name:           tomoe-gtk
 Summary:        Tomoe-gtk for handwriting recognition
 Version:        0.6.0
-Release:        %{mkrel 8}
+Release:        %{mkrel 9}
 Group:		System/Internationalization
 License:	LGPLv2+
 URL:		http://tomoe.sourceforge.jp/
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/tomoe/%{name}-%{version}.tar.gz
 Patch0:		tomoe-gtk-0.6.0-underlink.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	libtomoe-devel >= %{tomoe_version}
+BuildRequires:	tomoe-devel >= %{tomoe_version}
 BuildRequires:	tomoe >= %{tomoe_version}
 BuildRequires:	gtk+2-devel
 BuildRequires:	pygtk2.0-devel
