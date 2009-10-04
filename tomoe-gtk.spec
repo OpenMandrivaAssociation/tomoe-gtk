@@ -8,7 +8,7 @@
 Name:           tomoe-gtk
 Summary:        Tomoe-gtk for handwriting recognition
 Version:        0.6.0
-Release:        %{mkrel 9}
+Release:        %{mkrel 10}
 Group:		System/Internationalization
 License:	LGPLv2+
 URL:		http://tomoe.sourceforge.jp/
