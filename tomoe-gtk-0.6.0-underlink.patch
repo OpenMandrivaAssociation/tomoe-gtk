@@ -1,0 +1,21 @@
+--- tomoe-gtk-0.6.0/src/Makefile.am	2007-06-10 20:56:00.000000000 -0700
++++ tomoe-gtk-0.6.0/src/Makefile.am.new	2008-12-17 22:40:12.000000000 -0800
+@@ -4,7 +4,7 @@
+ 	-DTOMOEGTKDATADIR=\""$(datadir)"/$(PACKAGE)\"
+ 
+ INCLUDES = $(GTK2_CFLAGS) $(TOMOE_CFLAGS) $(GUCHARMAP_CFLAGS)
+-LIBS     = $(GTK2_LIBS)   $(TOMOE_LIBS)   $(GUCHARMAP_LIBS)
++LIBS     = $(GTK2_LIBS)   $(TOMOE_LIBS)   $(GUCHARMAP_LIBS) -lm
+ 
+ lib_LTLIBRARIES = libtomoe-gtk.la
+ libtomoe_gtk_la_SOURCES =						\
+--- tomoe-gtk-0.6.0/bindings/python/Makefile.am~	2007-06-08 07:33:12.000000000 +0200
++++ tomoe-gtk-0.6.0/bindings/python/Makefile.am	2008-12-27 11:41:57.000000000 +0100
+@@ -26,6 +26,7 @@
+ tomoegtk_la_LIBADD =			\
+ 	$(TOMOE_LIBS)			\
+ 	$(PYGTK_LIBS)			\
++	-lpython$(PYTHON_VERSION)		\
+ 	$(top_builddir)/src/libtomoe-gtk.la
+ 
+ OVERRIDES =				\
