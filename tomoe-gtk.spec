@@ -2,7 +2,7 @@
 %define libname_orig	lib%{name}
 %define libname		%mklibname %{name} %{major}
 %define develname	%mklibname -d %{name}
-
+%define debug_package %{nil}
 %define tomoe_version 0.6.0
 
 Name:           tomoe-gtk
