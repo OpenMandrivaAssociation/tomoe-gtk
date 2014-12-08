@@ -16,6 +16,7 @@ Patch0:	tomoe-gtk-0.6.0-underlink.patch
 BuildRequires:	gtk-doc
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(pygtk-2.0)
+BuildRequires:	pkgconfig(python2)
 BuildRequires:	pkgconfig(pygobject-2.0)
 BuildRequires:	pkgconfig(tomoe) >= 0.6.0
 
@@ -52,7 +53,8 @@ Headers of %{name} for development.
 ./autogen.sh
 
 %build
-%configure2_5x \
+export PYTHON=%{__python2}
+%configure \
 	--disable-static \
 	--without-gucharmap
 %make
@@ -77,5 +79,5 @@ rm -rf %{buildroot}%{_datadir}/gtk-doc/
 %{_libdir}/pkgconfig/*.pc
 
 %files python
-%{python_sitearch}/gtk-2.0/*.so
+%{python2_sitearch}/gtk-2.0/*.so
 
