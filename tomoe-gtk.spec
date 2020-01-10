@@ -50,7 +50,7 @@ Headers of %{name} for development.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 ./autogen.sh
 
 %configure --without-gucharmap PYTHON=%__python2 PYTHON_VERSION=%py2_ver
