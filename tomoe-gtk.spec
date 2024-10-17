@@ -10,7 +10,7 @@ Version:	0.6.0
 Release:	26
 Group:		System/Internationalization
 License:	LGPLv2+
-Url:		http://tomoe.sourceforge.jp/
+Url:		https://tomoe.sourceforge.jp/
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/tomoe/%{name}-%{version}.tar.gz
 Patch0:		tomoe-gtk-0.6.0-underlink.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
