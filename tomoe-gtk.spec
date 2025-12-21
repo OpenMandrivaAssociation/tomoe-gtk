@@ -14,6 +14,11 @@ Url:		https://tomoe.sourceforge.jp/
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/tomoe/%{name}-%{version}.tar.gz
 Patch0:		tomoe-gtk-0.6.0-underlink.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	gtk-doc
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(pygtk-2.0)
